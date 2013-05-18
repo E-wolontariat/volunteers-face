@@ -60,6 +60,8 @@ class PagePeer extends BasePagePeer
 				if(isset($_event['description']))
 					$event->setDescription($_event['description']);
 
+				var_dump($_event); die();
+
 				$event->setPage($page);
 				$events[] = $event;
 			}
