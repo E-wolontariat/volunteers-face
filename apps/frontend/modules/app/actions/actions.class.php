@@ -6,7 +6,7 @@ class appActions extends sfActions
 
   public function executeIndex(sfWebRequest $request)
   {
-
+    
   }
   public function executePermission(sfWebRequest $request) {
   	

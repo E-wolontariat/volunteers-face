@@ -1,4 +1,4 @@
-page:
+qpage:
   class: sfPropelORMRouteCollection
   options:
     model:                Page

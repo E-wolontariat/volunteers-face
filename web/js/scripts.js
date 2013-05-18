@@ -40,6 +40,7 @@ function sendAnswer() {
 }
 
 $(document).ready(function() {
+	FB.Canvas.setSize();
 	$("input#terms_accept").change(function() {
 		if($(this).is(':checked'))
 		{
