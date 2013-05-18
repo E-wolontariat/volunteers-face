@@ -21,6 +21,7 @@ abstract class BaseUserFormFilter extends BaseFormFilterPropel
       'phone'       => new sfWidgetFormFilterInput(),
       'last_ip'     => new sfWidgetFormFilterInput(),
       'is_secured'  => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'long_token'  => new sfWidgetFormFilterInput(),
       'updated_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
       'created_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
     ));
@@ -35,6 +36,7 @@ abstract class BaseUserFormFilter extends BaseFormFilterPropel
       'phone'       => new sfValidatorPass(array('required' => false)),
       'last_ip'     => new sfValidatorPass(array('required' => false)),
       'is_secured'  => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'long_token'  => new sfValidatorPass(array('required' => false)),
       'updated_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'created_at'  => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
     ));
@@ -64,6 +66,7 @@ abstract class BaseUserFormFilter extends BaseFormFilterPropel
       'phone'       => 'Text',
       'last_ip'     => 'Text',
       'is_secured'  => 'Boolean',
+      'long_token'  => 'Text',
       'updated_at'  => 'Date',
       'created_at'  => 'Date',
     );

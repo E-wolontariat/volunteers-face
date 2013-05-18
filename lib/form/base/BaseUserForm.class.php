@@ -24,6 +24,7 @@ abstract class BaseUserForm extends BaseFormPropel
       'phone'       => new sfWidgetFormInputText(),
       'last_ip'     => new sfWidgetFormInputText(),
       'is_secured'  => new sfWidgetFormInputCheckbox(),
+      'long_token'  => new sfWidgetFormInputText(),
       'updated_at'  => new sfWidgetFormDateTime(),
       'created_at'  => new sfWidgetFormDateTime(),
     ));
@@ -39,6 +40,7 @@ abstract class BaseUserForm extends BaseFormPropel
       'phone'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'last_ip'     => new sfValidatorString(array('max_length' => 45, 'required' => false)),
       'is_secured'  => new sfValidatorBoolean(array('required' => false)),
+      'long_token'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'updated_at'  => new sfValidatorDateTime(array('required' => false)),
       'created_at'  => new sfValidatorDateTime(array('required' => false)),
     ));
