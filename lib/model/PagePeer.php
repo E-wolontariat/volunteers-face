@@ -33,6 +33,7 @@ class PagePeer extends BasePagePeer
 			$events = array();
 
 			foreach ($eventsList as $_event) {
+				$_event = Facebook::get()->getEvent($_event['id'], $page->getAccessToken());
 
 
 				$event = new Event();
@@ -60,7 +61,7 @@ class PagePeer extends BasePagePeer
 				if(isset($_event['description']))
 					$event->setDescription($_event['description']);
 
-				var_dump($_event); die();
+				
 
 				$event->setPage($page);
 				$events[] = $event;

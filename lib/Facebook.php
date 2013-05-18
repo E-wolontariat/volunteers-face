@@ -296,6 +296,14 @@ class Facebook {
 		return array();
 	}	
 
+	public function getEvent($eventId, $access_token) {
+		$url = $eventId."/?access_token=".$access_token;
+		$request = $this->fbClient->get($url);
+		$response = $request->send();
+		$jsonResponse = $response->json();
+		return $jsonResponse;
+	} 
+
 	public function getPageCover($pageId) {
 		$url = "https://graph.facebook.com/".$pageId."?fields=cover";
 		$request = $this->fbClient->get($url);
@@ -309,10 +317,8 @@ class Facebook {
 		return "";
 	}
 
-	public function getEvents() {
-		$events = $this->execute("/events");
-		var_dump($events); die();
-	}
-	
+
+
+
 }
 ?>

@@ -10,7 +10,7 @@ propel:
     phone:       { type: varchar(255) }
     last_ip:     { type: varchar(45) }
     is_secured:  { type: boolean }
-    long_token:  {type:varchar(255)}
+    long_token:  { type:varchar(255) }
     updated_at:  ~
     created_at:  ~
  
