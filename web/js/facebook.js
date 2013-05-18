@@ -28,7 +28,8 @@ $(document).ready(function() {
 		  }
 		});
 	});
-	
+
+	FB.Canvas.setAutoGrow();
 });
 
 

@@ -1,3 +1,4 @@
+
 function goTo(location) {
 	top.location.href = facebook_url+''+location; 
 }
@@ -40,7 +41,7 @@ function sendAnswer() {
 }
 
 $(document).ready(function() {
-	FB.Canvas.setSize();
+	
 	$("input#terms_accept").change(function() {
 		if($(this).is(':checked'))
 		{
@@ -51,4 +52,13 @@ $(document).ready(function() {
 		}
 			
 	});
+	
+
+
 });
+
+
+
+
+
+ 

@@ -284,7 +284,18 @@ class Facebook {
 		return $jsonResponse;
 	}
 	
-	
+	public function getPageEvents($pageId, $access_token) {
+		$url = $pageId."/events/?access_token=".$access_token;
+		$request = $this->fbClient->get($url);
+		$response = $request->send();
+		$jsonResponse = $response->json();
+
+		if(isset($jsonResponse['data'])) {
+			return $jsonResponse['data'];
+		}
+
+		return array();
+	}	
 	
 }
 ?>

@@ -11,7 +11,7 @@
     <?php include_javascripts() ?>
   </head>
   <body>
-    <div id='fb-root'></div>
+  <div id='fb-root'></div>
 	<div id="main">
 
     <!-- NAVBAR
@@ -28,11 +28,13 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="#">Volunteers face</a>
+            <a class="brand" href="#">Volunteer's Face</a>
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <div class="nav-collapse collapse">
               <ul class="nav">
-                <li class="active"><a href="#">Home</a></li>
+              
+                <li class="active"><a href="<?php echo Facebook::get()->getFacebookUrl(); ?>">Strona główna</a></li>
+                  <?php /*
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
@@ -48,6 +50,7 @@
                     <li><a href="#">One more separated link</a></li>
                   </ul>
                 </li>
+                <?php */ ?>
               </ul>
             </div><!--/.nav-collapse -->
           </div><!-- /.navbar-inner -->
@@ -97,9 +100,9 @@
       <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
     </div><!-- /.carousel -->
 
+    <?php echo $sf_content ?>
 
-
-
+    
       <!-- FOOTER -->
       <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>

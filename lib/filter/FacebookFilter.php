@@ -24,7 +24,6 @@ class FacebookFilter extends sfFilter
 		
 		$is_released = in_array($currentAction, $releasedActions);
 		$is_releasedFromLike = in_array($currentAction, $releasedFromLikeActions);
-		$is_releasedFromRoundOver = in_array($currentAction, $releasedFromRoundOver);
 		
 		$facebook = Facebook::get();
 		
@@ -48,14 +47,7 @@ class FacebookFilter extends sfFilter
 				die();	
 			}
 		}
-		
-		if(!$is_releasedFromRoundOver) {
-			$round = RoundPeer::getCurrent(); 
-			if($round == null) {
-				sfContext::getInstance()->getController()->forward('app', 'isover');
-				die();
-			}
-		}
+
 		
       	$filterChain->execute($filterChain);      
 	} 
