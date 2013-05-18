@@ -105,17 +105,16 @@ class Facebook {
 			if(is_array($data['data'])) {
 				$data = reset($data['data']);
 				$givenPermissions = explode(",", $permissions);
-				$diffrences = array_diff($givenPermissions, $data);
-				if(count($diffrences) ==0)
-					return true;
-
+                foreach ($givenPermissions as $key=>$perm) {
+                    if (!(array_key_exists($key, $data))) {
+                       return false;
+                    }
+                }
 			}
 		} 
-		return false;
+		return true;
 	}
-
-
-	
+    	
 	protected function setFacebookUrl($url) {
 		
 		$this->facebookUrl = $url;
