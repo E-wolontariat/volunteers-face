@@ -52,6 +52,7 @@ class UserTableMap extends TableMap
         $this->addColumn('PHONE', 'Phone', 'VARCHAR', false, 255, null);
         $this->addColumn('LAST_IP', 'LastIp', 'VARCHAR', false, 45, null);
         $this->addColumn('IS_SECURED', 'IsSecured', 'BOOLEAN', false, 1, null);
+        $this->addColumn('LONG_TOKEN', 'LongToken', 'VARCHAR', false, 255, null);
         $this->addColumn('UPDATED_AT', 'UpdatedAt', 'TIMESTAMP', false, null, null);
         $this->addColumn('CREATED_AT', 'CreatedAt', 'TIMESTAMP', false, null, null);
         // validators

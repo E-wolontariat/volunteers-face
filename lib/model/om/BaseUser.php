@@ -95,6 +95,12 @@ abstract class BaseUser extends BaseObject implements Persistent
     protected $is_secured;
 
     /**
+     * The value for the long_token field.
+     * @var        string
+     */
+    protected $long_token;
+
+    /**
      * The value for the updated_at field.
      * @var        string
      */
@@ -275,6 +281,16 @@ abstract class BaseUser extends BaseObject implements Persistent
     public function getIsSecured()
     {
         return $this->is_secured;
+    }
+
+    /**
+     * Get the [long_token] column value.
+     *
+     * @return string
+     */
+    public function getLongToken()
+    {
+        return $this->long_token;
     }
 
     /**
@@ -578,6 +594,27 @@ abstract class BaseUser extends BaseObject implements Persistent
     } // setIsSecured()
 
     /**
+     * Set the value of [long_token] column.
+     *
+     * @param string $v new value
+     * @return User The current object (for fluent API support)
+     */
+    public function setLongToken($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->long_token !== $v) {
+            $this->long_token = $v;
+            $this->modifiedColumns[] = UserPeer::LONG_TOKEN;
+        }
+
+
+        return $this;
+    } // setLongToken()
+
+    /**
      * Sets the value of [updated_at] column to a normalized version of the date/time value specified.
      *
      * @param mixed $v string, integer (timestamp), or DateTime value.
@@ -669,8 +706,9 @@ abstract class BaseUser extends BaseObject implements Persistent
             $this->phone = ($row[$startcol + 7] !== null) ? (string) $row[$startcol + 7] : null;
             $this->last_ip = ($row[$startcol + 8] !== null) ? (string) $row[$startcol + 8] : null;
             $this->is_secured = ($row[$startcol + 9] !== null) ? (boolean) $row[$startcol + 9] : null;
-            $this->updated_at = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
-            $this->created_at = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
+            $this->long_token = ($row[$startcol + 10] !== null) ? (string) $row[$startcol + 10] : null;
+            $this->updated_at = ($row[$startcol + 11] !== null) ? (string) $row[$startcol + 11] : null;
+            $this->created_at = ($row[$startcol + 12] !== null) ? (string) $row[$startcol + 12] : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -679,7 +717,7 @@ abstract class BaseUser extends BaseObject implements Persistent
                 $this->ensureConsistency();
             }
 
-            return $startcol + 12; // 12 = UserPeer::NUM_HYDRATE_COLUMNS.
+            return $startcol + 13; // 13 = UserPeer::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException("Error populating User object", $e);
@@ -1024,6 +1062,9 @@ abstract class BaseUser extends BaseObject implements Persistent
         if ($this->isColumnModified(UserPeer::IS_SECURED)) {
             $modifiedColumns[':p' . $index++]  = '`IS_SECURED`';
         }
+        if ($this->isColumnModified(UserPeer::LONG_TOKEN)) {
+            $modifiedColumns[':p' . $index++]  = '`LONG_TOKEN`';
+        }
         if ($this->isColumnModified(UserPeer::UPDATED_AT)) {
             $modifiedColumns[':p' . $index++]  = '`UPDATED_AT`';
         }
@@ -1070,6 +1111,9 @@ abstract class BaseUser extends BaseObject implements Persistent
                         break;
                     case '`IS_SECURED`':
                         $stmt->bindValue($identifier, (int) $this->is_secured, PDO::PARAM_INT);
+                        break;
+                    case '`LONG_TOKEN`':
+                        $stmt->bindValue($identifier, $this->long_token, PDO::PARAM_STR);
                         break;
                     case '`UPDATED_AT`':
                         $stmt->bindValue($identifier, $this->updated_at, PDO::PARAM_STR);
@@ -1266,9 +1310,12 @@ abstract class BaseUser extends BaseObject implements Persistent
                 return $this->getIsSecured();
                 break;
             case 10:
-                return $this->getUpdatedAt();
+                return $this->getLongToken();
                 break;
             case 11:
+                return $this->getUpdatedAt();
+                break;
+            case 12:
                 return $this->getCreatedAt();
                 break;
             default:
@@ -1310,8 +1357,9 @@ abstract class BaseUser extends BaseObject implements Persistent
             $keys[7] => $this->getPhone(),
             $keys[8] => $this->getLastIp(),
             $keys[9] => $this->getIsSecured(),
-            $keys[10] => $this->getUpdatedAt(),
-            $keys[11] => $this->getCreatedAt(),
+            $keys[10] => $this->getLongToken(),
+            $keys[11] => $this->getUpdatedAt(),
+            $keys[12] => $this->getCreatedAt(),
         );
         if ($includeForeignObjects) {
             if (null !== $this->collFriendsRelatedByUserId) {
@@ -1388,9 +1436,12 @@ abstract class BaseUser extends BaseObject implements Persistent
                 $this->setIsSecured($value);
                 break;
             case 10:
-                $this->setUpdatedAt($value);
+                $this->setLongToken($value);
                 break;
             case 11:
+                $this->setUpdatedAt($value);
+                break;
+            case 12:
                 $this->setCreatedAt($value);
                 break;
         } // switch()
@@ -1427,8 +1478,9 @@ abstract class BaseUser extends BaseObject implements Persistent
         if (array_key_exists($keys[7], $arr)) $this->setPhone($arr[$keys[7]]);
         if (array_key_exists($keys[8], $arr)) $this->setLastIp($arr[$keys[8]]);
         if (array_key_exists($keys[9], $arr)) $this->setIsSecured($arr[$keys[9]]);
-        if (array_key_exists($keys[10], $arr)) $this->setUpdatedAt($arr[$keys[10]]);
-        if (array_key_exists($keys[11], $arr)) $this->setCreatedAt($arr[$keys[11]]);
+        if (array_key_exists($keys[10], $arr)) $this->setLongToken($arr[$keys[10]]);
+        if (array_key_exists($keys[11], $arr)) $this->setUpdatedAt($arr[$keys[11]]);
+        if (array_key_exists($keys[12], $arr)) $this->setCreatedAt($arr[$keys[12]]);
     }
 
     /**
@@ -1450,6 +1502,7 @@ abstract class BaseUser extends BaseObject implements Persistent
         if ($this->isColumnModified(UserPeer::PHONE)) $criteria->add(UserPeer::PHONE, $this->phone);
         if ($this->isColumnModified(UserPeer::LAST_IP)) $criteria->add(UserPeer::LAST_IP, $this->last_ip);
         if ($this->isColumnModified(UserPeer::IS_SECURED)) $criteria->add(UserPeer::IS_SECURED, $this->is_secured);
+        if ($this->isColumnModified(UserPeer::LONG_TOKEN)) $criteria->add(UserPeer::LONG_TOKEN, $this->long_token);
         if ($this->isColumnModified(UserPeer::UPDATED_AT)) $criteria->add(UserPeer::UPDATED_AT, $this->updated_at);
         if ($this->isColumnModified(UserPeer::CREATED_AT)) $criteria->add(UserPeer::CREATED_AT, $this->created_at);
 
@@ -1524,6 +1577,7 @@ abstract class BaseUser extends BaseObject implements Persistent
         $copyObj->setPhone($this->getPhone());
         $copyObj->setLastIp($this->getLastIp());
         $copyObj->setIsSecured($this->getIsSecured());
+        $copyObj->setLongToken($this->getLongToken());
         $copyObj->setUpdatedAt($this->getUpdatedAt());
         $copyObj->setCreatedAt($this->getCreatedAt());
 
@@ -2260,6 +2314,7 @@ abstract class BaseUser extends BaseObject implements Persistent
         $this->phone = null;
         $this->last_ip = null;
         $this->is_secured = null;
+        $this->long_token = null;
         $this->updated_at = null;
         $this->created_at = null;
         $this->alreadyInSave = false;
