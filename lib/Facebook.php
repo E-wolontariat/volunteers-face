@@ -36,7 +36,7 @@ class Facebook {
 		} else {
 			$redirect_uri = $this->getFacebookUrl()."/".$redirect_uri;
 		}
-		$url = "https://graph.facebook.com/oauth/authorize?client_id=".$this->getAppId()."&redirect_uri=".$redirect_uri."&scope=email,rsvp_event,user_birthday,user_location,user_likes".((!is_null($additional_permissions))?",manage_pages":"");
+		$url = "https://graph.facebook.com/oauth/authorize?client_id=".$this->getAppId()."&redirect_uri=".$redirect_uri."&scope=email,rsvp_event,user_birthday,user_location,user_likes".((!is_null($additional_permissions))?",manage_paset":"");
 		return $url;
 	}
 	
@@ -307,6 +307,11 @@ class Facebook {
 		}
 
 		return "";
+	}
+
+	public function getEvents() {
+		$events = $this->execute("/events");
+		var_dump($events); die();
 	}
 	
 }
