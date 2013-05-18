@@ -33,7 +33,7 @@ class PagePeer extends BasePagePeer
 			$events = array();
 
 			foreach ($eventsList as $_event) {
-				
+
 
 				$event = new Event();
 				if(isset($_event['name']))
@@ -60,6 +60,7 @@ class PagePeer extends BasePagePeer
 				if(isset($_event['description']))
 					$event->setDescription($_event['description']);
 
+				$event->setPage($page);
 				$events[] = $event;
 			}
 		}

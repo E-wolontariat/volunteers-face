@@ -296,6 +296,19 @@ class Facebook {
 
 		return array();
 	}	
+
+	public function getPageCover($pageId) {
+		$url = "https://graph.facebook.com/".$pageId."?fields=cover";
+		$request = $this->fbClient->get($url);
+		$response = $request->send();
+		$jsonResponse = $response->json();
+
+		if(isset($jsonResponse['cover'])) {
+			return $jsonResponse['cover']['source'];
+		}
+
+		return "";
+	}
 	
 }
 ?>

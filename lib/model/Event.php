@@ -8,6 +8,7 @@ class Event {
 	protected $_facebook_id;
 	protected $_picture;
 	protected $_description;
+	protected $_page;
 
 	public function setName($value) {
 		$this->_name = $value;
@@ -72,6 +73,15 @@ class Event {
 	public function getDescription() {
 		return $this->_description;
 	}
+
+	public function setPage($value) {
+		$this->_page = $value;
+	}
+
+	public function getPage() {
+		return $this->_page;
+	}
+
 
 
 }
