@@ -1,0 +1,55 @@
+propel:
+  user:
+    id:          ~
+    facebook_id: { type: bigint, index: true }
+    first_name:  { type: varchar(255) }
+    last_name:   { type: varchar(255) }
+    gender:      { type: boolean, default: false }
+    email:       { type: varchar(255) }
+    birthsday:   { type: varchar(255) }
+    phone:       { type: varchar(255) }
+    last_ip:     { type: varchar(45) }
+    is_secured:  { type: boolean }
+    long_token:  {type:varchar(255)}
+    updated_at:  ~
+    created_at:  ~
+ 
+  friend:
+    user_id:    { type: integer, foreignTable: user, foreignReference: id }
+    friend_id:    { type: integer, foreignTable: user, foreignReference: id }
+    facebook_friend_id: { type: bigint }
+
+  foundation:
+    id:  ~
+    name: { type: varchar(255) }
+    address_line1: { type: varchar(255) }
+    address_line2: { type: varchar(255) }
+    email: { type: varchar(255) }
+    phone: { type: varchar(255) }
+    description: {type: longvarchar }
+    updated_at:  ~
+    created_at:  ~
+
+  page:
+    id:  ~
+    facebook_id: { type: bigint }
+    user_id: { type: integer, foreignTable: user, foreignReference: id }
+    access_token: {type: varchar(255)}
+    last_sync: {type: timestamp}
+    updated_at:  ~
+    created_at:  ~
+
+  user_event:
+    id: ~
+    facebook_event_id: {type: bigint}
+    page_id: { type: integer, foreignTable: page, foreignReference: id }
+    updated_at:  ~
+    created_at:  ~
+
+
+
+
+
+   
+
+

@@ -1,0 +1,4 @@
+autoload:
+    google_addwords:
+        path: %SF_LIB_DIR%/vendor/AdWords
+        recursive: on

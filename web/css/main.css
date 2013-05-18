@@ -1,0 +1,174 @@
+html, body * {
+	margin: 0px;
+	padding: 0px;
+}
+
+html, body {
+
+}
+
+body {
+	background: url('../images/background.png') repeat-x #ffffff; /* Old browsers */
+	background: -moz-radial-gradient(center, ellipse cover, #ffffff 0%, #e8f7fa 100%); /* FF3.6+ */
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,#ffffff), color-stop(99%,#e8f7fa)); /* Chrome,Safari4+ */
+	background: -webkit-radial-gradient(center, ellipse cover, #ffffff 0%,#e8f7fa 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-radial-gradient(center, ellipse cover, #ffffff 0%,#e8f7fa 100%); /* Opera 12+ */
+	background: -ms-radial-gradient(center, ellipse cover, #ffffff 0%,#e8f7fa 100%); /* IE10+ */
+	background: radial-gradient(ellipse at center, #ffffff 0%,#e8f7fa 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e8f7fa',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+div#main {
+	width: 500px;
+	margin: 0px auto;
+}
+
+div.logo {
+	width: 259px;
+	height: 260px;
+	background: url('../images/logo.png') no-repeat;
+	margin: 0px auto;
+}
+
+p.blue {
+	color: #3b5998;
+	text-shadow: 0.1em 0.1em #def5fa;
+	text-align: center;
+	font-family: 'Dancing Script', cursive;
+}
+
+p.yellow {
+	color: #987d3b;
+	text-align: center;
+	text-shadow: 0.1em 0.1em #fff0ca;
+	font-family: 'Dancing Script', cursive;
+}
+
+div.tab div.logo {
+	margin-top: 108px;
+}
+
+div.tab p.line_1 {
+	font-size: 60px;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+div.tab p.line_2 {
+	font-size: 27px;
+}
+
+div.like div.logo {
+	margin-top: 68px;
+}
+
+div.like p.line_1 {
+	font-size: 60px;
+	margin-top: 20px;
+}
+
+div.like p.line_2 {
+	font-size: 64px;
+}
+
+div.like div.like_container {
+	clear: both;
+	margin-left: 213px;
+	margin-top: 40px;
+}
+
+div.answer div.logo {
+	margin-top: 18px;
+}
+
+div.answer p.line_1 {
+	font-size: 60px;
+	margin-top: 20px;
+}
+
+div.answer textarea {
+	-moz-border-radius: 15px;
+	border-radius: 15px;
+	background: transparent;
+	width: 510px;
+	padding: 10px;
+	height: 100px;
+	border: 1px solid #3b5998;
+	resize: none; 
+	margin: 0px auto;
+	margin-top: 20px;
+	display: block;
+    outline: none;
+	font-family: 'Dancing Script', cursive;
+	font-size: 20px;
+	color: #3b5998;
+}
+
+div.answer label {
+	background: url('../images/checkbox.png') no-repeat;
+	background-position: 0px 3px;
+	padding-left: 25px;
+	font-family: 'Dancing Script', cursive;
+	font-size: 20px;
+	display: block;
+	width: 505px;
+	margin: 0px auto;
+	color: #3b5998;
+	cursor: pointer;
+}
+
+div.answer label.clicked {
+	background-image: url('../images/checkbox_checked.png');
+}
+
+div.answer input#terms_accept {
+	zoom: 1;
+	filter: alpha(opacity=0);
+	opacity: 0;
+}
+
+label#terms_accept_label.error {
+	color: #987d3b;
+}
+
+textarea#answer_text.error {
+	border-color: #987d3b;
+}
+
+div.answer p.line_2 {
+	font-size: 64px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+
+div.isover div.logo {
+	margin-top: 68px;
+}
+
+div.isover p.line_1 {
+	font-size: 60px;
+	margin-top: 20px;
+}
+
+div.isover p.line_2 {
+	font-size: 32px;
+}
+
+
+div.thanks div.logo {
+	margin-top: 68px;
+}
+
+div.thanks p.line_1 {
+	font-size: 50px;
+	margin-top: 20px;
+}
+
+div.thanks p.line_2 {
+	font-size: 30px;
+}
+
+
+
+

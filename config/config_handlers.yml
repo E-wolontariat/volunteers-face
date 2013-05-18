@@ -1,0 +1,4 @@
+config/facebook.yml:
+  class:    sfDefineEnvironmentConfigHandler
+  param:
+    prefix: fb_

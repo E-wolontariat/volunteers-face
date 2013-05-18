@@ -1,0 +1,6 @@
+all:
+  app_id: 362843523815175
+  app_secret: e69d2ee75d716228d2fe4fdd2e4c2f08
+  namespace: volunteers-face
+  canvas_url: http://volunteers-face.dev
+  fanpage: 130209797141590

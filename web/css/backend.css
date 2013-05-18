@@ -1,0 +1,21 @@
+div.header {
+	background:#E7EEF6;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #DDD;
+	margin-bottom: 20px;
+}
+
+div.header span {
+	color: #464646;
+	text-decoration: none;
+	font-weight: bold;
+	border-left: 1px solid #464646;
+	padding: 0px 5px;
+	cursor: pointer;
+}
+
+div.header span:hover {
+	text-decoration: underline;
+}
+

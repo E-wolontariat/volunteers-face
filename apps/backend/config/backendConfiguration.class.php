@@ -1,0 +1,9 @@
+<?php
+
+class backendConfiguration extends sfApplicationConfiguration
+{
+  public function configure()
+  {
+	  require_once($this->getConfigCache()->checkConfig('config/facebook.yml'));
+  }
+}
