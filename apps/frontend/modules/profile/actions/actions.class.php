@@ -12,8 +12,10 @@ class profileActions extends sfActions
     $this->events = array_merge($pagesEvents, $userEvents);
     $facebook = Facebook::get();
 
+    
     $this->events = array_filter($this->events, function($event) use ($facebook) {
       if(!$event->getIsPublic()) { 
+
         if(!$event->getIsInvited()) {
           return false;
         }

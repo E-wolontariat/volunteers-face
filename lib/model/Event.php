@@ -106,11 +106,11 @@ class Event {
 	}
 
 	public function setIsPublic($value) {
-		$this->_is_invited = $value;
+		$this->_is_public = $value;
 	}
 
 	public function getIsPublic() {
-		return $this->_is_invited;
+		return $this->_is_public;
 	}
 
 	public function setIsInvited($value) {

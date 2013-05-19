@@ -22,6 +22,12 @@
 	        <?php if(!is_null($event->getPage())): ?>
 		        <div class="lead-image"><img src="<?php echo Facebook::get()->getPageCover($event->getPage()->getFacebookId()); ?>" alt=""></div>
 	        <?php endif;?>
+	        <?php if(!is_null($event->getUser())): ?>
+		        <div class="lead-image"><img src="<?php echo Facebook::get()->getPageCover($event->getUser()->getFacebookId()); ?>" alt=""></div>
+	        <?php endif;?>
+
+
+
 	        <div class="image-event">
 	        	<img src="<?php echo $event->getPicture(); ?>" alt="">
 	        </div>	
