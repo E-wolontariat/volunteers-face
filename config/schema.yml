@@ -33,6 +33,7 @@ propel:
   page:
     id:  ~
     facebook_id: { type: bigint }
+    foundation_id: { type: integer, foreignTable: foundation, foreignReference: id }
     user_id: { type: integer, foreignTable: user, foreignReference: id }
     access_token: {type: varchar(255)}
     last_sync: {type: timestamp}
@@ -41,6 +42,7 @@ propel:
 
   user_event:
     id: ~
+    foundation_id: { type: integer, foreignTable: foundation, foreignReference: id }
     facebook_event_id: {type: bigint}
     user_id: { type: integer, foreignTable: user, foreignReference: id }
     updated_at:  ~

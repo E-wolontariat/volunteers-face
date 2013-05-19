@@ -317,11 +317,11 @@ border: 10px solid #ffffff;
 border-bottom: 0px;
 }
 
-div.add-page-form {
+form.add-form {
   width: 80%;
   margin: 0px auto;
 }
 
-div.add-page-form input {
+form.add-form input {
   width: 500px;
 } 

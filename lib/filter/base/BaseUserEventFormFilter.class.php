@@ -12,6 +12,7 @@ abstract class BaseUserEventFormFilter extends BaseFormFilterPropel
   public function setup()
   {
     $this->setWidgets(array(
+      'foundation_id'     => new sfWidgetFormPropelChoice(array('model' => 'Foundation', 'add_empty' => true)),
       'facebook_event_id' => new sfWidgetFormFilterInput(),
       'user_id'           => new sfWidgetFormPropelChoice(array('model' => 'User', 'add_empty' => true)),
       'updated_at'        => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
@@ -19,6 +20,7 @@ abstract class BaseUserEventFormFilter extends BaseFormFilterPropel
     ));
 
     $this->setValidators(array(
+      'foundation_id'     => new sfValidatorPropelChoice(array('required' => false, 'model' => 'Foundation', 'column' => 'id')),
       'facebook_event_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'user_id'           => new sfValidatorPropelChoice(array('required' => false, 'model' => 'User', 'column' => 'id')),
       'updated_at'        => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
@@ -41,6 +43,7 @@ abstract class BaseUserEventFormFilter extends BaseFormFilterPropel
   {
     return array(
       'id'                => 'Number',
+      'foundation_id'     => 'ForeignKey',
       'facebook_event_id' => 'Number',
       'user_id'           => 'ForeignKey',
       'updated_at'        => 'Date',
