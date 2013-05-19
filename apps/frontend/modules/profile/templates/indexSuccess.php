@@ -3,7 +3,13 @@
 		$('div.lead-image img').each(function() {
 			var oldWidth = $(this).width();
 			$(this).width($(this).parent().width());
-			$(this).css('margin-top', (($(this).height()-$(this).parent().height())/2)+"px");
+
+			var heightOfImg = $(this).height();
+			var parentHeight = 200;
+
+
+
+			$(this).css('margin-top', ((parentHeight-heightOfImg)/2)+"px");
 		});
 	});
 </script>

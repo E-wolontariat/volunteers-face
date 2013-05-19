@@ -137,7 +137,7 @@ class ajaxActions extends sfActions
   	$data = Facebook::get()->attend($event_id);
 
   	$share_data = Facebook::get()->shareAsPage($event_id);
-  	var_dump($share_data); die();
+    Facebook::get()->shareAsUser($event_id);
 
   	echo json_encode(array("success"=>(int)$data));
   	die();

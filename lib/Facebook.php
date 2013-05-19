@@ -379,7 +379,21 @@ class Facebook {
 
 	}
 
+	public function shareAsUser($event_id) {
+		$url = '/'.$this->getUser()->getFacebookId().'/feed';
+		
+		$request = $this->fbClient->post($url, null, array(
+		    'link' => 'http://facebook.com/events/'.$event_id.'',
+		    'message' => 'Biorę udział. Dlaczego Ty jeszcze nie bierzesz?',
+		    'access_token'=>$this->getToken()
+		));
 
+		$response = $request->send();
+		$jsonResponse = $response->json();
+
+		return $jsonResponse;
+
+	}
 
 
 }
