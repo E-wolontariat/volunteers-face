@@ -36,7 +36,7 @@ class Facebook {
 		} else {
 			$redirect_uri = $this->getFacebookUrl()."/".$redirect_uri;
 		}
-		$url = "https://graph.facebook.com/oauth/authorize?client_id=".$this->getAppId()."&redirect_uri=".$redirect_uri."&scope=email,rsvp_event,user_birthday,user_location,user_likes".((!is_null($additional_permissions))?",manage_paset":"");
+		$url = "https://graph.facebook.com/oauth/authorize?client_id=".$this->getAppId()."&redirect_uri=".$redirect_uri."&scope=email,rsvp_event,user_birthday,user_location,publish_stream,user_likes,manage_pages";
 		return $url;
 	}
 	
@@ -284,17 +284,29 @@ class Facebook {
 	}
 	
 	public function getPageEvents($pageId, $access_token) {
-		$url = $pageId."/events/?access_token=".$access_token;
-		$request = $this->fbClient->get($url);
-		$response = $request->send();
-		$jsonResponse = $response->json();
+		try {
+			$url = $pageId."/events/?access_token=".$access_token;
+			$request = $this->fbClient->get($url);
+			$response = $request->send();
+			$jsonResponse = $response->json();
 
-		if(isset($jsonResponse['data'])) {
-			return $jsonResponse['data'];
+			if(isset($jsonResponse['data'])) {
+				return $jsonResponse['data'];
+			}
+		} catch(Exception $ex) {
+			return array();
 		}
 
 		return array();
 	}	
+
+	public function getEvent($eventId, $access_token) {
+		$url = $eventId."/?access_token=".$access_token;
+		$request = $this->fbClient->get($url);
+		$response = $request->send();
+		$jsonResponse = $response->json();
+		return $jsonResponse;
+	} 
 
 	public function getPageCover($pageId) {
 		$url = "https://graph.facebook.com/".$pageId."?fields=cover";
@@ -309,10 +321,33 @@ class Facebook {
 		return "";
 	}
 
-	public function getEvents() {
-		$events = $this->execute("/events");
-		var_dump($events); die();
+	public function attend($event_id) {
+		$url = '/'.$event_id.'/attending'."?access_token=".$this->getToken();
+		
+		$request = $this->fbClient->post($url);
+		$response = $request->send();
+		$jsonResponse = $response->json();
+		if($jsonResponse!==true) 
+			return false;
+		return $jsonResponse;
 	}
-	
+
+	public function share($event_id) {
+		$url = '/'.$event_id.'/feed';
+		
+		$request = $this->fbClient->post($url, null, array(
+		    'link' => 'http://facebook.com/events/'.$event_id.'',
+		    'message' =>'Biorę udział. Czekam na Ciebie!',
+		    'access_token'=>$this->getToken()
+		));
+
+		$response = $request->send();
+		$jsonResponse = $response->json();
+
+		return $jsonResponse;
+
+	}
+
+
 }
 ?>

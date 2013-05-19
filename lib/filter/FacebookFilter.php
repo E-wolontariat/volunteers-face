@@ -8,22 +8,11 @@ class FacebookFilter extends sfFilter
 		$releasedActions = array();
 		$releasedActions[] = 'app/permission';
 		$releasedActions[] = 'app/index';
-		
-		$releasedFromLikeActions = array();
-		$releasedFromLikeActions[] = 'app/permission';
-		$releasedFromLikeActions[] = 'app/index';
-		$releasedFromLikeActions[] = 'app/like';
-		
-		$releasedFromRoundOver = array();
-		$releasedFromRoundOver[] = 'app/permission';
-		$releasedFromRoundOver[] = 'app/index';
-		$releasedFromRoundOver[] = 'app/like';
-		$releasedFromRoundOver[] = 'app/isover';
+
 		
 		$currentAction = sfContext::getInstance()->getModuleName().'/'.sfContext::getInstance()->getActionName();
 		
 		$is_released = in_array($currentAction, $releasedActions);
-		$is_releasedFromLike = in_array($currentAction, $releasedFromLikeActions);
 		
 		$facebook = Facebook::get();
 		
@@ -34,19 +23,12 @@ class FacebookFilter extends sfFilter
 		$facebook->setPreviousPage($previousPage);
 		
 		if(!$is_released) {
-			if(is_null($facebook->getFacebookUserId())) {
+			if(is_null($facebook->getFacebookUserId()) || $facebook->checkPermissions('email,rsvp_event,user_birthday,user_location,publish_stream,user_likes')) {
 				sfContext::getInstance()->getController()->redirect('app/permission');
 				die();
 			}
 		}
-		
-		if(!$is_releasedFromLike) {
-			if(!($facebook->isPageFan())) {
-				sfContext::getInstance()->getRequest()->setParameter('previousAction', $currentAction);
-				sfContext::getInstance()->getController()->forward('app', 'like');
-				die();	
-			}
-		}
+	
 
 		
       	$filterChain->execute($filterChain);      

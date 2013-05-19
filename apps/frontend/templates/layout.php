@@ -33,13 +33,10 @@
             <div class="nav-collapse collapse">
               <ul class="nav">
               
-                <li class="active"><a href="<?php echo Facebook::get()->getFacebookUrl(); ?>">Strona główna</a></li>
-                  <?php /*
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
+                
+                <li><a class="active" style="cursor: pointer;" onclick="goTo('profile/index'); return false;">Strona główna</a></li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Organizacje w akcji <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li><a href="#">Action</a></li>
                     <li><a href="#">Another action</a></li>
@@ -50,6 +47,13 @@
                     <li><a href="#">One more separated link</a></li>
                   </ul>
                 </li>
+                <li><a style="cursor: pointer;" onclick="goTo('profile/add'); return false;">Dodaj organizację</a></li>
+
+                  <?php /*
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
+                
                 <?php */ ?>
               </ul>
             </div><!--/.nav-collapse -->
@@ -67,10 +71,7 @@
 
 
       <!-- FOOTER -->
-      <footer>
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2013 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
+      
 
     </div><!-- /.container -->
 
