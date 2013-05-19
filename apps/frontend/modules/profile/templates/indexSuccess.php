@@ -1,7 +1,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('div.lead-image img').each(function() {
-			var oldWidth = $(this).width();
+			
 			$(this).width($(this).parent().width());
 
 			var heightOfImg = $(this).height();
