@@ -19,4 +19,11 @@
  */
 class FoundationPeer extends BaseFoundationPeer
 {
+
+    public static function getFoundations() {
+        $c = new Criteria();
+        $c->setDistinct();
+        return self::doSelect($c);
+    }
+
 }

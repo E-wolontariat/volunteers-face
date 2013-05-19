@@ -38,13 +38,9 @@
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Organizacje w akcji <b class="caret"></b></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li class="divider"></li>
-                    <li class="nav-header">Nav header</li>
-                    <li><a href="#">Separated link</a></li>
-                    <li><a href="#">One more separated link</a></li>
+                    <?php foreach(FoundationPeer::getFoundations() as $foundation): ?>
+                        <li><a href="#" onclick="hideOthers(<?php echo $foundation->getId(); ?>); return false;"><?php echo $foundation->getName(); ?></a></li>
+                    <?php endforeach; ?>
                   </ul>
                 </li>
                 <li><a style="cursor: pointer;" onclick="goTo('profile/add'); return false;">Dodaj organizację</a></li>
@@ -62,8 +58,6 @@
 
       </div> <!-- /.container -->
     </div><!-- /.navbar-wrapper -->
-
-
 
 
     <?php echo $sf_content ?>
