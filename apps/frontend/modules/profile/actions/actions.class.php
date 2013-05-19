@@ -6,6 +6,8 @@ class profileActions extends sfActions
 
   public function executeIndex(sfWebRequest $request)
   {
+    $this->foundationId = $request->getParameter('foundation_id', false);
+
     $pagesEvents = PagePeer::parsePages();
     $userEvents = UserEventPeer::getAll();
 

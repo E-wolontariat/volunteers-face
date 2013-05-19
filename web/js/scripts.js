@@ -109,6 +109,7 @@ function hideOthers(foundation_id, foundation_name) {
 	$('div[name="event"]').hide();
     $('div[data-foundation="'+foundation_id+'"]').show();
 	$('#filter-settings').text(foundation_name);
+	refreshImages();
 } 
 
 function showAll() {
@@ -117,3 +118,13 @@ function showAll() {
 } 
 
 
+
+function refreshImages() {
+	$('div.lead-image img').each(function() {
+			
+			$(this).width($(this).parent().width());
+			var heightOfImg = $(this).height();
+			var parentHeight = 200;
+			$(this).css('margin-top', ((parentHeight-heightOfImg)/2)+"px");
+		});
+}

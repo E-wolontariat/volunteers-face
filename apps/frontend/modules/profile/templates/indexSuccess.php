@@ -1,28 +1,19 @@
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('div.lead-image img').each(function() {
-			
-			$(this).width($(this).parent().width());
-
-			var heightOfImg = $(this).height();
-			var parentHeight = 200;
-
-
-
-			$(this).css('margin-top', ((parentHeight-heightOfImg)/2)+"px");
-		});
+		refreshImages();
 	});
 </script>
 
 <div class="hero-unit">
     <h1>Hej <?php echo Facebook::get()->getUser()->getFirstName()." ".Facebook::get()->getUser()->getLastName(); ?></h1>
 	<p>Poniżej znajdziesz wszystkie publiczne oraz te dostępne tylko dla Ciebie akcje z ponad <?php echo count($pages); ?> orgaznizacji NGO. Dołącz, zapraszaj znajomych, pomóż się zorganizować!</p>
-    <div>Filtr: <span id="filter-settings">wszystkie organizacje</span></div>
+    
+    <div>Filtr: <span id="filter-settings"><?php echo (($foundationId!==false)?FoundationPeer::retrieveByPK($foundationId)->getName():"wszystkie organizacje"); ?></span></div>
 </div>
 
 
 <?php foreach($events as $event): ?>
-	<div class="jumbotron" name="event" data-foundation="<?php echo $event->getFoundation()->getId(); ?>" >
+	<div class="jumbotron" name="event" data-foundation="<?php echo $event->getFoundation()->getId(); ?>" <?php if($foundationId!==false): if($event->getFoundation()->getId()!=$foundationId): ?> style="display: none;"<?php endif; endif;?>>
         <h1><a target="_blank" href="http://facebook.com/events/<?php echo $event->getFacebookId(); ?>" title="<?php echo $event->getName(); ?>"><?php echo $event->getName(); ?></a></h1>
         <div class="cover-event">
 	        <?php if(!is_null($event->getPage())): ?>

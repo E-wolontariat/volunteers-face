@@ -39,7 +39,12 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Organizacje w akcji <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                       <?php foreach(FoundationPeer::getFoundations() as $foundation): ?>
-                          <li><a href="#" onclick="hideOthers(<?php echo $foundation->getId(); ?>, '<?php echo $foundation->getName(); ?>'); return false;"><?php echo $foundation->getName(); ?></a></li>
+                          <?php if($sf_params->get('module')=="profile" && $sf_params->get('action')=="index"): ?>
+                            <li><a href="#" onclick="hideOthers(<?php echo $foundation->getId(); ?>, '<?php echo $foundation->getName(); ?>'); return false;"><?php echo $foundation->getName(); ?></a></li>
+                          <?php else: ?>
+                            <li><a href="#" onclick="goTo('/profile/index/foundation_id/<?php echo $foundation->getId(); ?>'); return false;"><?php echo $foundation->getName(); ?></a></li>
+                          <?php endif; ?>
+
                       <?php endforeach; ?>
                     </ul>
                   </li>
