@@ -49,31 +49,53 @@ class ajaxActions extends sfActions
   }
 
    public function executeAddpage(sfWebRequest $request) {
-  	$page_id = $request->getParameter('event_id', false);
-  	
+  	$page_id = $request->getParameter('page_id', false);
   	$facebook = Facebook::get();
    	
-   	$dataFacebook = $request->getParameter('page_id');
+   	
    	$token = $facebook->getLongToken();
-    $user_pages = $facebook->getPages($dataFacebook);
+    $user_pages = $facebook->getPages($page_id);
+
     if($user_pages) {
-	
-  	 	$dataFacebook['access_token'] = $user_pages['access_token'];
    
     	$page = new Page();
     	$user_id = $facebook->getUser()->getId();
     	$page->setUserId($user_id);
     	$page->setAccessToken($user_pages['access_token']);
-    	$page->setFacebookId($dataFacebook);
+    	$page->setFacebookId($page_id);
     	$page->save();
 
     	//$this->processForm($request, $this->form);	
     }
-    	
-
-
+ 
   	echo json_encode(array("success"=>1));
   	die();
+  }
+
+
+   public function executeAddevent(sfWebRequest $request) {
+   	/*
+  	$page_id = $request->getParameter('event_id', false);
+  	$facebook = Facebook::get();
+   	
+   	$token = $facebook->getLongToken();
+    $user_events $facebook->getUserEvents();
+
+    if($user_events) {
+   
+    	$page = new UserEvent();
+    	$user_id = $facebook->getUser()->getId();
+    	$page->setUserId($user_id);
+    	$page->setAccessToken($user_pages['access_token']);
+    	$page->setFacebookId($page_id);
+    	$page->save();
+
+    	//$this->processForm($request, $this->form);	
+    }
+ 
+  	echo json_encode(array("success"=>1));
+  	die();
+  	*/
   }
 
   public function executeJoin(sfWebRequest $request) {

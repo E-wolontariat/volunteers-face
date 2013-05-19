@@ -86,7 +86,7 @@ function addPage(e) {
 		dataType: "json",
 		type: "post",
 		data: {
-			'page_id': input_id,
+			'page_id': input.val(),
 			'signed_request': signed_request
 		},
 		success: function(data) {
