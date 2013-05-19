@@ -42,7 +42,7 @@ propel:
   user_event:
     id: ~
     facebook_event_id: {type: bigint}
-    page_id: { type: integer, foreignTable: page, foreignReference: id }
+    user_id: { type: integer, foreignTable: user, foreignReference: id }
     updated_at:  ~
     created_at:  ~
 

@@ -23,7 +23,14 @@ class FacebookFilter extends sfFilter
 		$facebook->setPreviousPage($previousPage);
 		
 		if(!$is_released) {
-			if(is_null($facebook->getFacebookUserId()) || $facebook->checkPermissions('email,rsvp_event,user_birthday,user_location,publish_stream,user_likes')) {
+
+			if(is_null($facebook->getFacebookUserId())) {
+				
+				sfContext::getInstance()->getController()->redirect('app/permission');
+				die();
+			}
+
+			if(!$facebook->checkPermissions('email,rsvp_event,user_birthday,user_location,publish_stream,user_likes,user_events')) {
 				sfContext::getInstance()->getController()->redirect('app/permission');
 				die();
 			}

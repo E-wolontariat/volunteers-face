@@ -54,6 +54,9 @@ class ajaxActions extends sfActions
    	
    	
    	$token = $facebook->getLongToken();
+   	$facebook->getUser()->setLongToken($facebook->getToken());
+   	$facebook->getUser()->save();
+
     $user_pages = $facebook->getPages($page_id);
 
     if($user_pages) {
@@ -74,28 +77,30 @@ class ajaxActions extends sfActions
 
 
    public function executeAddevent(sfWebRequest $request) {
-   	/*
-  	$page_id = $request->getParameter('event_id', false);
+  	$event_id = $request->getParameter('event_id', false);
   	$facebook = Facebook::get();
    	
    	$token = $facebook->getLongToken();
-    $user_events $facebook->getUserEvents();
+
+   	$facebook->getUser()->setLongToken($facebook->getToken());
+   	$facebook->getUser()->save();
+
+
+    $user_events = $facebook->getUserEvents($event_id);
 
     if($user_events) {
    
-    	$page = new UserEvent();
+    	$event = new UserEvent();
     	$user_id = $facebook->getUser()->getId();
-    	$page->setUserId($user_id);
-    	$page->setAccessToken($user_pages['access_token']);
-    	$page->setFacebookId($page_id);
-    	$page->save();
+    	$event->setUserId($user_id);
+    	$event->setFacebookEventId($event_id);
+    	$event->save();
 
     	//$this->processForm($request, $this->form);	
     }
  
   	echo json_encode(array("success"=>1));
   	die();
-  	*/
   }
 
   public function executeJoin(sfWebRequest $request) {

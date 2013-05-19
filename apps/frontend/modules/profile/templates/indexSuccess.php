@@ -19,7 +19,9 @@
 	<div class="jumbotron">
         <h1><a target="_blank" href="http://facebook.com/events/<?php echo $event->getFacebookId(); ?>" title="<?php echo $event->getName(); ?>"><?php echo $event->getName(); ?></a></h1>
         <div class="cover-event">
-	        <div class="lead-image"><img src="<?php echo Facebook::get()->getPageCover($event->getPage()->getFacebookId()); ?>" alt=""></div>
+	        <?php if(!is_null($event->getPage())): ?>
+		        <div class="lead-image"><img src="<?php echo Facebook::get()->getPageCover($event->getPage()->getFacebookId()); ?>" alt=""></div>
+	        <?php endif;?>
 	        <div class="image-event">
 	        	<img src="<?php echo $event->getPicture(); ?>" alt="">
 	        </div>	

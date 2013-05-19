@@ -36,7 +36,7 @@ class Facebook {
 		} else {
 			$redirect_uri = $this->getFacebookUrl()."/".$redirect_uri;
 		}
-		$url = "https://graph.facebook.com/oauth/authorize?client_id=".$this->getAppId()."&redirect_uri=".$redirect_uri."&scope=email,rsvp_event,user_birthday,user_location,publish_stream,user_likes,manage_pages";
+		$url = "https://graph.facebook.com/oauth/authorize?client_id=".$this->getAppId()."&redirect_uri=".$redirect_uri."&scope=email,rsvp_event,user_birthday,user_events,user_location,publish_stream,user_likes,manage_pages";
 		return $url;
 	}
 	
@@ -101,12 +101,16 @@ class Facebook {
 
 	public function checkPermissions($permissions) {
 		$data = $this->getPermissions();
+
 		if(is_array($data) && isset($data['data'])) {
+
 			if(is_array($data['data'])) {
+
 				$data = reset($data['data']);
 				$givenPermissions = explode(",", $permissions);
-                foreach ($givenPermissions as $key=>$perm) {
+                foreach ($givenPermissions as $key) {
                     if (!(array_key_exists($key, $data))) {
+                    	
                        return false;
                     }
                 }
@@ -299,6 +303,25 @@ class Facebook {
 
 		return array();
 	}	
+
+	public function getUserEvents($event_id) {
+		try {
+			$url = "/".$this->getUser()->getFacebookId()."/events/?access_token=".$this->getToken();
+			
+			$request = $this->fbClient->get($url);
+			$response = $request->send();
+			$jsonResponse = $response->json();
+			
+			if(isset($jsonResponse['data'])) {
+				return $jsonResponse['data'];
+			}
+		} catch(Exception $ex) {
+			return array();
+		}
+
+		return array();
+			
+	}
 
 	public function getEvent($eventId, $access_token) {
 		$url = $eventId."/?access_token=".$access_token;

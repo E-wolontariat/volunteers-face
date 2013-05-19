@@ -6,10 +6,13 @@ class profileActions extends sfActions
 
   public function executeIndex(sfWebRequest $request)
   {
-    $this->events = PagePeer::parsePages();
-    $this->pages = PagePeer::getPages();
-      
+    $pagesEvents = PagePeer::parsePages();
+    $userEvents = UserEventPeer::getAll();
 
+    $this->events = array_merge($pagesEvents, $userEvents);
+
+    $this->pages = PagePeer::getPages();
+    
   }
 
   public function executeAdd(sfWebRequest $request) {

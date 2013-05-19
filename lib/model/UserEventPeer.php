@@ -19,4 +19,53 @@
  */
 class UserEventPeer extends BaseUserEventPeer
 {
+
+
+	public static function getAll() {
+
+
+		$c = new Criteria();
+		$dbEvents = self::doSelect($c);
+		$events = array();
+		foreach($dbEvents as $dbEvent) {
+				$user = UserPeer::retrieveByPK($dbEvent->getUserId());
+				$_event = Facebook::get()->getEvent($dbEvent->getFacebookEventId(), $user->getLongToken());
+				
+				$event = new Event();
+				if(isset($_event['name']))
+					$event->setName($_event['name']);
+
+				if(isset($_event['start_time']))
+					$event->setStart($_event['start_time']);
+
+				if(isset($_event['end_time']))
+					$event->setEnd($_event['end_time']);
+
+				if(isset($_event['timezone']))
+					$event->setTimezone($_event['timezone']);
+
+				if(isset($_event['location']))
+					$event->setLocation($_event['location']);
+
+				if(isset($_event['id']))
+					$event->setFacebookId($_event['id']);
+
+				if(isset($_event['id']))
+					$event->setPicture("http://graph.facebook.com/".$_event['id']."/picture");
+
+				if(isset($_event['description']))
+					$event->setDescription($_event['description']);
+
+				if(isset($_event['venue'])) {
+					$event->setIsFollow(in_array(Facebook::get()->getUser()->getFacebookId(), $_event['venue']));
+				}
+
+				$event->setUser($user);
+
+				$events[] = $event;
+			
+		}
+		
+		return $events;
+	}
 }

@@ -22,7 +22,6 @@ class PagePeer extends BasePagePeer
 
 	public static function getPages() {
 		$c = new Criteria();
-		
 		return self::doSelect($c);
 	}
 
@@ -35,7 +34,6 @@ class PagePeer extends BasePagePeer
 
 			foreach ($eventsList as $_event) {
 				$_event = Facebook::get()->getEvent($_event['id'], $page->getAccessToken());
-
 
 				$event = new Event();
 				if(isset($_event['name']))
@@ -74,4 +72,6 @@ class PagePeer extends BasePagePeer
 		}
 		return $events;
 	}
+
+	
 }

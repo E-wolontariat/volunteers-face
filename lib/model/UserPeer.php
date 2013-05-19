@@ -27,4 +27,7 @@ class UserPeer extends BaseUserPeer {
 		$row = self::doSelectOne($c);
 		return $row;
 	} 
+
+
+
 } // UserPeer

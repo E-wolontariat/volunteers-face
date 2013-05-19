@@ -95,4 +95,22 @@ function addPage(e) {
 	})	
 } 
 
+function addEvent(e) {
+	e = $(e);
+	var input = e.prev();
+
+	$.ajax({
+		url: canvas_url+"/ajax/addevent",
+		dataType: "json",
+		type: "post",
+		data: {
+			'event_id': input.val(),
+			'signed_request': signed_request
+		},
+		success: function(data) {
+			top.location.href = facebook_url+'/profile/index';
+		}
+	})	
+} 
+
 

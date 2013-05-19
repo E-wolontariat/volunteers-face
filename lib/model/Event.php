@@ -10,6 +10,7 @@ class Event {
 	protected $_description;
 	protected $_page;
 	protected $_is_follow;
+	protected $_user;
 
 	public function setName($value) {
 		$this->_name = $value;
@@ -90,6 +91,15 @@ class Event {
 	public function getIsFollow() {
 		return $this->_is_follow;
 	}
+
+	public function setUser($value) {
+		$this->_user = $value;
+	}
+
+	public function getUser() {
+		return $this->_user;
+	}
+
 
 
 
