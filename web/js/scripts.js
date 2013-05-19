@@ -78,17 +78,13 @@ function ajaxJoin(event_id,e) {
 
 
 function addPage(e) {
-	e = $(e);
-	var input = e.prev();
-
+    var formData = $('#add-page-form').serializeArray();
+    formData.push({'name': 'signed_request', 'value': signed_request})
 	$.ajax({
 		url: canvas_url+"/ajax/addpage",
 		dataType: "json",
 		type: "post",
-		data: {
-			'page_id': input.val(),
-			'signed_request': signed_request
-		},
+		data: formData,
 		success: function(data) {
 			top.location.href = facebook_url+'/profile/index';
 		}
@@ -96,17 +92,13 @@ function addPage(e) {
 } 
 
 function addEvent(e) {
-	e = $(e);
-	var input = e.prev();
-
+    var formData = $('#add-event-form').serializeArray();
+    formData.push({'name': 'signed_request', 'value': signed_request})
 	$.ajax({
 		url: canvas_url+"/ajax/addevent",
 		dataType: "json",
 		type: "post",
-		data: {
-			'event_id': input.val(),
-			'signed_request': signed_request
-		},
+        data: formData,
 		success: function(data) {
 			top.location.href = facebook_url+'/profile/index';
 		}

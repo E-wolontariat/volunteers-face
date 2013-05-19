@@ -3,6 +3,19 @@
 
 class ajaxActions extends sfActions
 {
+
+  protected function forgeFoundation(sfWebRequest $request) {
+    $foundation = new Foundation();
+    $foundation->setName($request->getParameter('name', ''));
+    $foundation->setAddressLine1($request->getParameter('address_line1', ''));
+    $foundation->setAddressLine2($request->getParameter('address_line2', ''));
+    $foundation->setEmail($request->getParameter('email', ''));
+    $foundation->setPhone($request->getParameter('phone', ''));
+    $foundation->setDescription($request->getParameter('description', ''));
+    $foundation->save();
+    return $foundation;
+  }
+
   public function executeIspagefan(sfWebRequest $request) {
 	  if($request->isXmlHttpRequest()) {
 	  	  $return = array('success'=>1, 'is_fan'=>Facebook::get()->isPageFan());
@@ -58,7 +71,6 @@ class ajaxActions extends sfActions
 	  	die();
   	}
    	
-   	
    	$token = $facebook->getLongToken();
    	$facebook->getUser()->setLongToken($facebook->getToken());
    	$facebook->getUser()->save();
@@ -66,10 +78,12 @@ class ajaxActions extends sfActions
     $user_pages = $facebook->getPages($page_id);
 
     if($user_pages) {
-   
+
+        $foundation = $this->forgeFoundation($request);
     	$page = new Page();
     	$user_id = $facebook->getUser()->getId();
-    	$page->setUserId($user_id);
+        $page->setUserId($user_id);
+    	$page->setFoundationId($foundation.getId());
     	$page->setAccessToken($user_pages['access_token']);
     	$page->setFacebookId($page_id);
     	$page->save();
@@ -102,9 +116,11 @@ class ajaxActions extends sfActions
 
     if($user_events) {
    
+        $foundation = $this->forgeFoundation($request);
     	$event = new UserEvent();
     	$user_id = $facebook->getUser()->getId();
-    	$event->setUserId($user_id);
+        $event->setUserId($user_id);
+    	$event->setFoundationId($foundation.getId());
     	$event->setFacebookEventId($event_id);
     	$event->save();
 
