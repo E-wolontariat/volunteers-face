@@ -67,9 +67,35 @@ class ajaxActions extends sfActions
 
     	//$this->processForm($request, $this->form);	
     }
-    
+ 
   	echo json_encode(array("success"=>1));
   	die();
+  }
+
+
+   public function executeAddevent(sfWebRequest $request) {
+   	/*
+  	$page_id = $request->getParameter('event_id', false);
+  	$facebook = Facebook::get();
+   	
+   	$token = $facebook->getLongToken();
+    $user_events $facebook->getUserEvents();
+
+    if($user_events) {
+   
+    	$page = new UserEvent();
+    	$user_id = $facebook->getUser()->getId();
+    	$page->setUserId($user_id);
+    	$page->setAccessToken($user_pages['access_token']);
+    	$page->setFacebookId($page_id);
+    	$page->save();
+
+    	//$this->processForm($request, $this->form);	
+    }
+ 
+  	echo json_encode(array("success"=>1));
+  	die();
+  	*/
   }
 
   public function executeJoin(sfWebRequest $request) {
