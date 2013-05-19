@@ -11,6 +11,8 @@ class Event {
 	protected $_page;
 	protected $_is_follow;
 	protected $_user;
+	protected $_is_invited;
+	protected $_is_public;
 
 	public function setName($value) {
 		$this->_name = $value;
@@ -21,6 +23,7 @@ class Event {
 	}
 
 	public function setStart($value) {
+		$value = date('Y-m-d', strtotime($value));
 		$this->_start = $value;
 	}
 
@@ -29,6 +32,7 @@ class Event {
 	}
 
 	public function setEnd($value) {
+		$value = date('Y-m-d', strtotime($value));
 		$this->_end = $value;
 	}
 
@@ -98,6 +102,22 @@ class Event {
 
 	public function getUser() {
 		return $this->_user;
+	}
+
+	public function setIsPublic($value) {
+		$this->_is_invited = $value;
+	}
+
+	public function getIsPublic() {
+		return $this->_is_invited;
+	}
+
+	public function setIsInvited($value) {
+		$this->_is_invited = $value;
+	}
+
+	public function getIsInvited() {
+		return $this->_is_invited;
 	}
 
 

@@ -64,14 +64,36 @@ class PagePeer extends BasePagePeer
 					$event->setIsFollow(in_array(Facebook::get()->getUser()->getFacebookId(), $_event['venue']));
 				}
 
-				
-
+			
 				$event->setPage($page);
+				$event->setIsPublic(true);
+
+
+				$invited = Facebook::get()->getInvited($event->getFacebookId(), $event->getPage()->getAccessToken());
+				if(isset($invited['data'])) {
+					foreach ($invited['data'] as $key => $value) {
+						if($value['id'] == Facebook::get()->getUser()->getFacebookId() && $value['rsvp_status'] == 'attending') {
+							$event->setIsFollow(true);
+							$event->setIsInvited(true);
+						} elseif($value['id'] == Facebook::get()->getUser()->getFacebookId()) {
+							$event->setIsInvited(true);
+						}
+					}	
+				}
 				$events[] = $event;
 			}
 		}
 		return $events;
 	}
 
-	
+	public static function getByFacebookId($id) {
+		if(is_null($id))
+			return null;
+		
+		$c = new Criteria();
+		$c->add(self::FACEBOOK_ID, $id);
+		$row = self::doSelectOne($c);
+		return $row;
+	} 
+
 }

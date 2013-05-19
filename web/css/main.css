@@ -251,7 +251,7 @@
         line-height: 1;
       }
       .jumbotron .lead {
-        font-size: 24px;
+        font-size: 15px;
         line-height: 1.25;
       }
       .jumbotron .btn {
@@ -299,7 +299,7 @@ div.jumbotron h1 a:hover {
 div.cover-event {
   height: 200px;
   position: relative;
-  margin-bottom: 15px;
+  
 }
 
 div.image-event {
@@ -325,3 +325,14 @@ div.add-page-form {
 div.add-page-form input {
   width: 500px;
 } 
+
+div.details-event  {
+  background: #eeeeee;
+  padding: 10px;
+  border-bottom: 5px solid #000000;
+}
+  
+div.details-event > span {
+  clear: both;
+  display: block;
+}

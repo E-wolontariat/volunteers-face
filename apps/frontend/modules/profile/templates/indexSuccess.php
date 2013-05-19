@@ -26,9 +26,16 @@
 	        	<img src="<?php echo $event->getPicture(); ?>" alt="">
 	        </div>	
 	    </div>
-        <p class="lead"><?php echo $event->getDescription(); ?></p>
-        <?php if(!$event->getIsFollow()): ?> <a class="btn btn-large btn-success" onclick="ajaxJoin(<?php echo $event->getFacebookId(); ?>, this);">Przyłącz się</a><?php endif; ?>
-        <?php if(!$event->getIsFollow()): ?> <a class="btn btn-large btn-success" href="#">Wyślij swoim znajomym</a><?php endif; ?>
-      </div>
+	    <div class="details-event">
+	    	<span class="event-date"><?php echo $event->getStart(); ?><?php if(!is_null($event->getEnd())): echo " - ".(string)$event->getEnd(); endif; ?></span>
+			<?php if(!$event->getIsPublic()):?><span class="event-public">Ten event jest prywatny</span><?php endif; ?>
+			        <p class="lead"><?php echo $event->getDescription(); ?></p>
+
+			         <?php if(!$event->getIsFollow()): ?> <a class="btn btn-large btn-success" onclick="ajaxJoin(<?php echo $event->getFacebookId(); ?>, this);">Przyłącz się</a><?php endif; ?>
+        <?php /*if(!$event->getIsFollow()): ?> <a class="btn btn-large btn-success" href="#">Wyślij swoim znajomym</a><?php endif; */?>
+      
+
+	    </div>	
+       </div>
 <?php endforeach; ?>
 

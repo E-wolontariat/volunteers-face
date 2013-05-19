@@ -331,6 +331,14 @@ class Facebook {
 		return $jsonResponse;
 	} 
 
+	public function getInvited($eventId, $access_token) {
+		$url = $eventId."/invited/?access_token=".$access_token;
+		$request = $this->fbClient->get($url);
+		$response = $request->send();
+		$jsonResponse = $response->json();
+		return $jsonResponse;
+	} 
+
 	public function getPageCover($pageId) {
 		$url = "https://graph.facebook.com/".$pageId."?fields=cover";
 		$request = $this->fbClient->get($url);
@@ -355,12 +363,12 @@ class Facebook {
 		return $jsonResponse;
 	}
 
-	public function share($event_id) {
+	public function shareAsPage($event_id) {
 		$url = '/'.$event_id.'/feed';
 		
 		$request = $this->fbClient->post($url, null, array(
 		    'link' => 'http://facebook.com/events/'.$event_id.'',
-		    'message' =>'Biorę udział. Czekam na Ciebie!',
+		    'message' => $this->getUser()->getFirstName(). ' bierze udział. Czekam na Ciebie!',
 		    'access_token'=>$this->getToken()
 		));
 
@@ -370,6 +378,8 @@ class Facebook {
 		return $jsonResponse;
 
 	}
+
+
 
 
 }

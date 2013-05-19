@@ -51,6 +51,12 @@ class ajaxActions extends sfActions
    public function executeAddpage(sfWebRequest $request) {
   	$page_id = $request->getParameter('page_id', false);
   	$facebook = Facebook::get();
+
+  	if(!is_null(PagePeer::getByFacebookId($page_id))) {
+
+	  	echo json_encode(array("success"=>1));
+	  	die();
+  	}
    	
    	
    	$token = $facebook->getLongToken();
@@ -79,6 +85,12 @@ class ajaxActions extends sfActions
    public function executeAddevent(sfWebRequest $request) {
   	$event_id = $request->getParameter('event_id', false);
   	$facebook = Facebook::get();
+
+  	if(!is_null(UserEventPeer::getByFacebookId($event_id))) {
+  		
+	  	echo json_encode(array("success"=>1));
+	  	die();
+  	}
    	
    	$token = $facebook->getLongToken();
 
@@ -105,8 +117,10 @@ class ajaxActions extends sfActions
 
   public function executeJoin(sfWebRequest $request) {
   	$event_id = $request->getParameter('event_id', false);
+  	
   	$data = Facebook::get()->attend($event_id);
-  	$share_data = Facebook::get()->share($event_id);
+
+  	$share_data = Facebook::get()->shareAsPage($event_id);
   	var_dump($share_data); die();
 
   	echo json_encode(array("success"=>(int)$data));

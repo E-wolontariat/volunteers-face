@@ -31,6 +31,7 @@ class UserEventPeer extends BaseUserEventPeer
 				$user = UserPeer::retrieveByPK($dbEvent->getUserId());
 				$_event = Facebook::get()->getEvent($dbEvent->getFacebookEventId(), $user->getLongToken());
 				
+				
 				$event = new Event();
 				if(isset($_event['name']))
 					$event->setName($_event['name']);
@@ -56,16 +57,43 @@ class UserEventPeer extends BaseUserEventPeer
 				if(isset($_event['description']))
 					$event->setDescription($_event['description']);
 
-				if(isset($_event['venue'])) {
-					$event->setIsFollow(in_array(Facebook::get()->getUser()->getFacebookId(), $_event['venue']));
-				}
+				
 
 				$event->setUser($user);
+				$event->setIsPublic(true);
+				$event->setIsFollow(false);
+				
+				$invited = Facebook::get()->getInvited($event->getFacebookId(), $event->getUser()->getLongToken());
+				if(isset($invited['data'])) {
+					foreach ($invited['data'] as $key => $value) {
+						if($value['id'] == Facebook::get()->getUser()->getFacebookId() && $value['rsvp_status'] == 'attending') {
+							$event->setIsFollow(true);
+							$event->setIsInvited(true);
+						} elseif($value['id'] == Facebook::get()->getUser()->getFacebookId()) {
+							$event->setIsInvited(true);
+						}
+					}	
+				}
 
-				$events[] = $event;
-			
+				if(isset($_event['privacy'])) {
+					if($_event['privacy'] == "SECRET") {
+						$event->setIsPublic(false);
+					}
+				}
+				
+				$events[] = $event;	
 		}
 		
 		return $events;
 	}
+
+	public static function getByFacebookId($id) {
+		if(is_null($id))
+			return null;
+		
+		$c = new Criteria();
+		$c->add(self::FACEBOOK_EVENT_ID, $id);
+		$row = self::doSelectOne($c);
+		return $row;
+	} 
 }
