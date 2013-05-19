@@ -105,9 +105,15 @@ function addEvent(e) {
 	})	
 }
 
-function hideOthers(foundation_id) {
+function hideOthers(foundation_id, foundation_name) {
 	$('div[name="event"]').hide();
-	$('div[data-foundation="'+foundation_id+'"]').show();
+    $('div[data-foundation="'+foundation_id+'"]').show();
+	$('#filter-settings').text(foundation_name);
+} 
+
+function showAll() {
+    $('div[name="event"]').show();
+    $('#filter-settings').text('wszystkie organizacje');
 } 
 
 

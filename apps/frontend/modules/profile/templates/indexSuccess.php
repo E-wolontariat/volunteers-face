@@ -11,7 +11,7 @@
 <div class="hero-unit">
     <h1>Hej <?php echo Facebook::get()->getUser()->getFirstName()." ".Facebook::get()->getUser()->getLastName(); ?></h1>
 	<p>Poniżej znajdziesz wszystkie publiczne oraz te dostępne tylko dla Ciebie akcje z ponad <?php echo count($pages); ?> orgaznizacji NGO. Dołącz, zapraszaj znajomych, pomóż się zorganizować!</p>
-
+    <div>Filtr: <span id="filter-settings">wszystkie organizacje</span></div>
 </div>
 
 

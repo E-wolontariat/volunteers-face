@@ -28,7 +28,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="#">Volunteer's Face</a>
+            <a class="brand" href="#" onclick="showAll(); return false;">Volunteer's Face</a>
             <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
             <div class="nav-collapse collapse">
               <ul class="nav">
@@ -39,7 +39,7 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">Organizacje w akcji <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <?php foreach(FoundationPeer::getFoundations() as $foundation): ?>
-                        <li><a href="#" onclick="hideOthers(<?php echo $foundation->getId(); ?>); return false;"><?php echo $foundation->getName(); ?></a></li>
+                        <li><a href="#" onclick="hideOthers(<?php echo $foundation->getId(); ?>, '<?php echo $foundation->getName(); ?>'); return false;"><?php echo $foundation->getName(); ?></a></li>
                     <?php endforeach; ?>
                   </ul>
                 </li>
