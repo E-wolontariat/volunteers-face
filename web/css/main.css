@@ -329,10 +329,14 @@ form.add-form input {
 div.details-event  {
   background: #eeeeee;
   padding: 10px;
-  border-bottom: 5px solid #000000;
+  
 }
   
 div.details-event > span {
   clear: both;
   display: block;
+}
+
+span.event-foundation {
+  font-weight: bold;
 }

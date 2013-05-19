@@ -78,8 +78,12 @@ class PagePeer extends BasePagePeer
 						} elseif($value['id'] == Facebook::get()->getUser()->getFacebookId()) {
 							$event->setIsInvited(true);
 						}
+						
 					}	
 				}
+
+				$event->setFoundation($page->getFoundation());
+
 				$events[] = $event;
 			}
 		}

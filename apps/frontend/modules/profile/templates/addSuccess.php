@@ -13,7 +13,7 @@
       <input type="text" class="span2" name="phone" placeholder="Telefon">
       <input type="text" class="span2" name="description" placeholder="Opis">
 	  <input type="text" class="span2" name="page_id" placeholder="ID strony">
-	  <button type="submit" class="btn" onclick="addPage(this)">Wyślij</button>
+	  <button type="submit" class="btn" onclick="addPage(this); return false;">Wyślij</button>
 	
 </form>
 
@@ -27,6 +27,6 @@
       <input type="text" class="span2" name="phone" placeholder="Telefon">
       <input type="text" class="span2" name="description" placeholder="Opis">
 	  <input type="text" class="span2" name="event_id" placeholder="ID eventu">
-	  <button type="submit" class="btn" onclick="addEvent(this)">Wyślij</button>
+	  <button type="submit" class="btn" onclick="addEvent(this); return false;">Wyślij</button>
 	
 </form>

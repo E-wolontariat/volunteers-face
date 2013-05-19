@@ -16,7 +16,7 @@
 
 
 <?php foreach($events as $event): ?>
-	<div class="jumbotron">
+	<div class="jumbotron" name="event" data-foundation="<?php echo $event->getFoundation()->getId(); ?>" >
         <h1><a target="_blank" href="http://facebook.com/events/<?php echo $event->getFacebookId(); ?>" title="<?php echo $event->getName(); ?>"><?php echo $event->getName(); ?></a></h1>
         <div class="cover-event">
 	        <?php if(!is_null($event->getPage())): ?>
@@ -27,8 +27,12 @@
 	        </div>	
 	    </div>
 	    <div class="details-event">
+	    	<span class="event-foundation"><?php echo $event->getFoundation()->getName(); ?></span>
+
 	    	<span class="event-date"><?php echo $event->getStart(); ?><?php if(!is_null($event->getEnd())): echo " - ".(string)$event->getEnd(); endif; ?></span>
 			<?php if(!$event->getIsPublic()):?><span class="event-public">Ten event jest prywatny</span><?php endif; ?>
+
+
 			        <p class="lead"><?php echo $event->getDescription(); ?></p>
 
 			         <?php if(!$event->getIsFollow()): ?> <a class="btn btn-large btn-success" onclick="ajaxJoin(<?php echo $event->getFacebookId(); ?>, this);">Przyłącz się</a><?php endif; ?>

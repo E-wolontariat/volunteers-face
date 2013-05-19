@@ -61,6 +61,7 @@ class UserEventPeer extends BaseUserEventPeer
 
 				$event->setUser($user);
 				$event->setIsPublic(true);
+				$event->setIsInvited(false);
 				$event->setIsFollow(false);
 				
 				$invited = Facebook::get()->getInvited($event->getFacebookId(), $event->getUser()->getLongToken());
@@ -68,19 +69,24 @@ class UserEventPeer extends BaseUserEventPeer
 					foreach ($invited['data'] as $key => $value) {
 						if($value['id'] == Facebook::get()->getUser()->getFacebookId() && $value['rsvp_status'] == 'attending') {
 							$event->setIsFollow(true);
+							
+
+						} 
+						if($value['id'] == Facebook::get()->getUser()->getFacebookId()) {
 							$event->setIsInvited(true);
-						} elseif($value['id'] == Facebook::get()->getUser()->getFacebookId()) {
-							$event->setIsInvited(true);
+
 						}
+
 					}	
 				}
+				
 
 				if(isset($_event['privacy'])) {
 					if($_event['privacy'] == "SECRET") {
 						$event->setIsPublic(false);
 					}
 				}
-				
+				$event->setFoundation($dbEvent->getFoundation());
 				$events[] = $event;	
 		}
 		

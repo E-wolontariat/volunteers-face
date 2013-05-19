@@ -79,15 +79,15 @@ class ajaxActions extends sfActions
 
     if($user_pages) {
 
-        $foundation = $this->forgeFoundation($request);
+      $foundation = $this->forgeFoundation($request);
+
     	$page = new Page();
     	$user_id = $facebook->getUser()->getId();
-        $page->setUserId($user_id);
-    	$page->setFoundationId($foundation.getId());
+      $page->setUserId($user_id);
+    	$page->setFoundationId($foundation->getId());
     	$page->setAccessToken($user_pages['access_token']);
     	$page->setFacebookId($page_id);
     	$page->save();
-
     	//$this->processForm($request, $this->form);	
     }
  
@@ -120,7 +120,7 @@ class ajaxActions extends sfActions
     	$event = new UserEvent();
     	$user_id = $facebook->getUser()->getId();
         $event->setUserId($user_id);
-    	$event->setFoundationId($foundation.getId());
+    	$event->setFoundationId($foundation->getId());
     	$event->setFacebookEventId($event_id);
     	$event->save();
 

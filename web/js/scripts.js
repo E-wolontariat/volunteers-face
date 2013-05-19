@@ -103,6 +103,11 @@ function addEvent(e) {
 			top.location.href = facebook_url+'/profile/index';
 		}
 	})	
+}
+
+function hideOthers(foundation_id) {
+	$('div[name="event"]').hide();
+	$('div[data-foundation="'+foundation_id+'"]').show();
 } 
 
 

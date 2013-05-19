@@ -13,6 +13,7 @@ class Event {
 	protected $_user;
 	protected $_is_invited;
 	protected $_is_public;
+	protected $_foundation;
 
 	public function setName($value) {
 		$this->_name = $value;
@@ -120,7 +121,13 @@ class Event {
 		return $this->_is_invited;
 	}
 
+	public function getFoundation() {
+		return $this->_foundation;
+	}
 
+	public function setFoundation($value) {
+		$this->_foundation = $value;
+	}
 
 
 }
