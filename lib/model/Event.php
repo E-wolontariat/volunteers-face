@@ -9,6 +9,7 @@ class Event {
 	protected $_picture;
 	protected $_description;
 	protected $_page;
+	protected $_is_follow;
 
 	public function setName($value) {
 		$this->_name = $value;
@@ -80,6 +81,14 @@ class Event {
 
 	public function getPage() {
 		return $this->_page;
+	}
+
+		public function setIsFollow($value) {
+		$this->_is_follow = $value;
+	}
+
+	public function getIsFollow() {
+		return $this->_is_follow;
 	}
 
 

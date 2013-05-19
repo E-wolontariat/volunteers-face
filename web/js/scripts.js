@@ -58,7 +58,41 @@ $(document).ready(function() {
 });
 
 
+function ajaxJoin(event_id,e) {
+	$.ajax({
+		url: canvas_url+"/ajax/join",
+		dataType: "json",
+		type: "post",
+		data: {
+			'event_id': event_id,
+			'signed_request': signed_request
+		},
+		success: function(data) {
+			if(data.success) {
+				$(e).hide();
+					
+			}
+		}
+	})
+} 
 
 
+function addPage(e) {
+	e = $(e);
+	var input = e.prev();
 
- 
+	$.ajax({
+		url: canvas_url+"/ajax/addpage",
+		dataType: "json",
+		type: "post",
+		data: {
+			'page_id': input_id,
+			'signed_request': signed_request
+		},
+		success: function(data) {
+			top.location.href = facebook_url+'/profile/index';
+		}
+	})	
+} 
+
+

@@ -28,6 +28,7 @@ class PagePeer extends BasePagePeer
 
 	public static function parsePages() {
 		$pages = self::getPages();
+		$events = array();
 		foreach($pages as $page) {
 			$eventsList = Facebook::get()->getPageEvents($page->getFacebookId(), $page->getAccessToken());
 			$events = array();
@@ -60,6 +61,10 @@ class PagePeer extends BasePagePeer
 
 				if(isset($_event['description']))
 					$event->setDescription($_event['description']);
+
+				if(isset($_event['venue'])) {
+					$event->setIsFollow(in_array(Facebook::get()->getUser()->getFacebookId(), $_event['venue']));
+				}
 
 				
 
